@@ -2,9 +2,11 @@ import React from 'react';
 
 const Todo = ({ text, todo, todos, setTodos }) => {
     // Events
+    // Handles deleting a todo item when delete button is clicked
     const deleteHandler = () => {
         setTodos(todos.filter((el) => el.id !== todo.id));
     };
+    // Handles setting a todo item to completed when checkbox is clicked
     const completeHandler = () => {
         setTodos(todos.map((item) => {
             if (item.id === todo.id) {
