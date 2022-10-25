@@ -40,16 +40,6 @@ function App() {
     localStorage.setItem("todos", JSON.stringify(todos));
   };
 
-  // Get todos from local storage
-  const getLocalTodos = () => {
-    if (localStorage.getItem("todos") === null) {
-      localStorage.setItem("todos", JSON.stringify([]));
-    } else {
-      let todoLocal = JSON.parse(localStorage.getItem("todos"));
-      setTodos(todoLocal);
-    }
-  };
-
   return (
     <div className="App">
       <header>Todo List</header>
