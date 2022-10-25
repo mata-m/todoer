@@ -1,11 +1,26 @@
 import React from 'react';
 
 // Todo List Input and Item Filter Form
-const Form = () => {
+const Form = ({ setInputText, setTodos, todos, inputText }) => {
+    const inputTextHandler = (e) => {
+        console.log(e.target.value);
+        setInputText(e.target.value);
+    };
+    const submitTodoHandler = (e) => {
+        e.preventDefault();
+        setTodos([
+            ...todos,
+             { text: inputText, completed: false, id: Math.random() * 1000 }]);
+        setInputText("");
+    };
     return (
         <form>
-            <input type="text" className="todo-input"/>
-            <button className="todo-button" type="submit">
+            <input 
+                value={inputText}
+                onChange={inputTextHandler}
+                type="text"
+                className="todo-input"/>
+            <button onClick={submitTodoHandler} type="submit" className="todo-button">
                 <i className="fas fa-plus-square"></i>
             </button>
             <div className="select">
