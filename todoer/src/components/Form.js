@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Todo List Input and Item Filter Form
-const Form = ({ setInputText, setTodos, todos, inputText }) => {
+const Form = ({ setInputText, setTodos, todos, inputText, setFilter }) => {
     // Handles input text change
     const inputTextHandler = (e) => {
         console.log(e.target.value);
@@ -15,6 +15,10 @@ const Form = ({ setInputText, setTodos, todos, inputText }) => {
              { text: inputText, completed: false, id: Math.random() * 1000 }]);
         setInputText("");
     };
+    //  Updates the filter state when a filter is selected
+    const filterStatusHandler = (e) => {
+        setFilter(e.target.value);
+    };
     return (
         <form>
             <input 
@@ -26,7 +30,7 @@ const Form = ({ setInputText, setTodos, todos, inputText }) => {
                 <i className="fas fa-plus-square"></i>
             </button>
             <div className="select">
-                <select name="todos" className="filter-todo">
+                <select onChange={filterStatusHandler} name="todos" className="filter-todo">
                     <option value="all">All</option>
                     <option value="completed">Completed</option>
                     <option value="uncompleted">Uncompleted</option>
