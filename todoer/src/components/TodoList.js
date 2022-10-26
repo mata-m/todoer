@@ -6,7 +6,7 @@ const TodoList = ({ todos, setTodos, filteredTodos }) => {
 
     return (
         <div className="todo-container">
-            <ul className="todo-list">
+            <ul className="todo-list" data-testid="todo-list">
                 {filteredTodos.map((todo) => (
                     <Todo 
                         text={todo.text} 

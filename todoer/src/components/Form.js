@@ -20,8 +20,9 @@ const Form = ({ setInputText, setTodos, todos, inputText, setFilter }) => {
         setFilter(e.target.value);
     };
     return (
-        <form>
-            <input 
+        <form data-testid="form">
+            <input
+                data-testid="todo-input-field-text"
                 value={inputText}
                 onChange={inputTextHandler}
                 type="text"
@@ -29,11 +30,11 @@ const Form = ({ setInputText, setTodos, todos, inputText, setFilter }) => {
             <button onClick={submitTodoHandler} type="submit" className="todo-button">
                 <i className="fas fa-plus-square"></i>
             </button>
-            <div className="select">
+            <div className="select" data-testid="select">
                 <select onChange={filterStatusHandler} name="todos" className="filter-todo">
-                    <option value="all">All</option>
-                    <option value="completed">Completed</option>
-                    <option value="uncompleted">Uncompleted</option>
+                    <option data-testid="select-option" value="all">All</option>
+                    <option data-testid="select-option" value="completed">Completed</option>
+                    <option data-testid="select-option" value="uncompleted">Uncompleted</option>
                 </select>
             </div>
         </form>
