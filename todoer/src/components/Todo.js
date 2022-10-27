@@ -1,21 +1,13 @@
 import React from 'react';
 
-const Todo = ({ text, todo, todos, setTodos }) => {
-    // Events
-    // Handles deleting a todo item when delete button is clicked
+const Todo = ({ text, todo, toggleTodoStatus, removeTodo}) => {
+    // Deletes the todo item when delete button is clicked
     const deleteHandler = () => {
-        setTodos(todos.filter((el) => el.id !== todo.id));
+        removeTodo(todo.id);
     };
-    // Handles setting a todo item to completed when checkbox is clicked
+    // Toggles the todo item status when the checkbox is clicked
     const completeHandler = () => {
-        setTodos(todos.map((item) => {
-            if (item.id === todo.id) {
-                return {
-                    ...item, completed: !item.completed
-                };
-            }
-            return item;
-        }));
+        toggleTodoStatus(todo.id);
     };
 
     return (

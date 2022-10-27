@@ -3,21 +3,22 @@ import './App.css';
 // Importing Components
 import Form from "./components/Form";
 import TodoList from "./components/TodoList";
+import useTodoStore from './app/todoStore';
 
 function App() {
-  // Set initial todo list state from local storage
-  let initTodos = JSON.parse(localStorage.getItem('todos')) || [];
 
   const [inputText, setInputText] = useState("");
-  const [todos, setTodos] = useState(initTodos);
   const [filter, setFilter] = useState("all");
   const [filteredTodos, setFilteredTodos] = useState([]);
+  const addTodo = useTodoStore((state) => state.addTodo)
+  const removeTodo = useTodoStore((state) => state.removeTodo)
+  const toggleTodoStatus = useTodoStore((state) => state.toggleTodoStatus)
+  const todos = useTodoStore((state) => state.todos)
 
   // Update the shown filtered todos when the filter state changes or new todos
   // are added. 
   useEffect(() => {
     filterHandler();
-    saveLocalTodos();
   }, [todos, filter]);
 
   // Updates the filtered todos shown when the filter state is updated
@@ -35,25 +36,19 @@ function App() {
       }
   };
 
-  // Save todos to local storage
-  const saveLocalTodos = () => {
-    localStorage.setItem("todos", JSON.stringify(todos));
-  };
-
   return (
     <div className="App">
       <header>Todo List</header>
       <Form
         inputText={inputText}
-        todos={todos}
-        setTodos={setTodos}
+        addTodo={addTodo}
         setInputText={setInputText} 
         setFilter={setFilter}
         />
       <TodoList 
-        todos={todos}
-        setTodos={setTodos}
-        filteredTodos={filteredTodos} />
+        filteredTodos={filteredTodos}
+        toggleTodoStatus={toggleTodoStatus}
+        removeTodo={removeTodo} />
     </div>
   );
 }

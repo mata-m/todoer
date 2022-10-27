@@ -1,18 +1,17 @@
 import React from 'react';
 
 // Todo List Input and Item Filter Form
-const Form = ({ setInputText, setTodos, todos, inputText, setFilter }) => {
+const Form = ({ setInputText, addTodo, inputText, setFilter }) => {
+
     // Handles input text change
     const inputTextHandler = (e) => {
-        console.log(e.target.value);
         setInputText(e.target.value);
     };
-    // Creates a new todo item when submit button is clicked
+    // Creates a new todo item when submit button is clicked and clears the input
+    // without refressing the page
     const submitTodoHandler = (e) => {
         e.preventDefault();
-        setTodos([
-            ...todos,
-             { text: inputText, completed: false, id: Math.random() * 1000 }]);
+        addTodo({ text: inputText, completed: false, id: Math.ceil(Math.random() * 100000 )});
         setInputText("");
     };
     //  Updates the filter state when a filter is selected
